@@ -21,11 +21,6 @@ Vue.component('box', {
 let app = new Vue({
     el: "#app",
     data: {
-        Grid: [
-            ["top-left", "top-center", "top-right"],
-            ["center-left", "center-center", "center-right"],
-            ["bottom-left", "bottom-center", "bottom-right"]
-        ],
         Board: [
             -1, -1, -1,
             -1, -1, -1,
@@ -67,7 +62,7 @@ let app = new Vue({
             }
             return "error";
         },
-        setStatus(y, x) {
+        applyMove(y, x) {
             if (this.gameOver) return;
             if (y > -1 && y < 3 && x > -1 && x < 3) {
                 let index = y * 3 + x;
@@ -131,13 +126,14 @@ let app = new Vue({
             return true;
         },
         AImove() {
-            console.log("HERE");
+            availableMoves = [];
             for (let i = 0; i < 9; i++) {
                 if (this.Board[i] === -1) {
-                    this.setStatus(Math.floor(i / 3), i % 3);
-                    return;
+                    availableMoves.push(i);
                 }
             }
+            let move = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+            this.applyMove(Math.floor(move / 3), Math.floor(move % 3));
         }
     },
 
