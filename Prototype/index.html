@@ -42,7 +42,31 @@
                     </box>
                 </div>
             </div>
+            <div class="container-fluid p-4">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-success btn-lg btn-block" @click="resetGame(0)"
+                            v-bind:class="{active: mode == 0}">
+                            Pass & Play
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-warning btn-lg btn-block" @click="resetGame(1)"
+                            v-bind:class="{active: mode == 1}">
+                            Play The AI
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div v-show="gameOver" class="container-fluid p-4 text-center">
+                <div>
+                    <i v-if="winner === 0" class="fas fa-carrot fa-3x p-3" style="color: crimson">WON!</i>
+                    <i v-else-if="winner === 1" class="fas fa-cookie fa-3x p-3" style="color: blue">WON!</i>
+                    <i v-else class="far fa-question-circle fa-3x p-3">It's a Draw!</i>
+                </div>
+            </div>
         </div>
+
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
