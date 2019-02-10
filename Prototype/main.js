@@ -1,12 +1,14 @@
 Vue.component('box', {
-    props: ['y', 'x'],
+    props: ['y', 'x', 'status'],
     data: () => {
         return {
-            status: 2
         }
     },
+    computed: {
+
+    },
     template: `
-        <div class="col border p-2">
+        <div class="col border p-2" v-on:click = "$emit('set-status', y, x)">
             <i v-if="status === 0" class="fas fa-carrot fa-5x"></i>
             <i v-else-if="status === 1" class="fas fa-cookie fa-5x"></i>
             <i v-else class="far fa-question-circle fa-5x"></i>
@@ -23,23 +25,23 @@ let app = new Vue({
             ["bottom-left", "bottom-center", "bottom-right"]
         ],
         Status: [
-            [0, 0, 0],
-            [0, 1, 0],
-            [0, 0, 0]
+            -1, -1, -1,
+            -1, -1, -1,
+            -1, -1, -1
         ]
     },
     methods: {
         getStatus(y, x) {
             if (y > -1 && y < 3 && x > -1 && x < 3) {
-                return this.Status[y][x];
+                return this.Status[y * 3 + x];
             }
             return "error";
         },
         setStatus(y, x) {
             if (y > -1 && y < 3 && x > -1 && x < 3) {
-                this.Status[y][x] = 1;
+                let index = y * 3 + x;
+                this.$set(this.Status, index, this.Status[index] + 1);
             }
-            console.log("HERE");
         }
     },
 
