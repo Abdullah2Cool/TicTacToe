@@ -26,10 +26,9 @@
             <h1 class="text-center">Tic-Tac-Toe</h1>
             <div class="container text-center">
                 <div class="row" v-for="(row, index1) in Grid">
-                    <div class="col border p-2" v-for="(col, index2) in row">
-                        <i class="fas fa-carrot fa-5x"></i>
-                        <p>({{index1}}, {{index2}})</p>
-                    </div>
+                    <box v-for="(col, index2) in row" v-bind:x="index2" v-bind:y="index1"></box>
+                    <!-- <p>{{getStatus(index1, index2)}}</p> -->
+                    <!-- <p>({{index1}}, {{index2}})</p> -->
                 </div>
             </div>
         </div>
