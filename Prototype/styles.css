@@ -1,0 +1,9 @@
+.tictactoe_box {
+    min-width: 100px; 
+    min-height: 100px;
+}
+
+.square {
+    max-width: 33%;
+    padding-bottom: 33%;
+}
